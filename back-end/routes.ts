@@ -9,9 +9,9 @@ routes.post('/service', ServicesController.create);
 routes.post('/tier', TiersController.create);
 routes.post('/tier/service', TiersController.createByServiceName); // Not recommended. Name is not a primary key
 
-routes.get('/service/:id', ServicesController.show);
+routes.get('/service/:url', ServicesController.showByUrl);
 routes.get('/tier/:id', TiersController.show);
-routes.get('/tier/service/:id', TiersController.showByServiceId);
+routes.get('/tier/service/:url', TiersController.showByServiceUrl);
 
 routes.get('/services', ServicesController.showAll);
 routes.get('/tiers', TiersController.showAll);

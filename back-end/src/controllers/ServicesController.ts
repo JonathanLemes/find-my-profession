@@ -50,8 +50,23 @@ export default {
     async showAll(request: Request, response: Response) {
         const servicesRepository = getRepository(Service);
 
-        const service = await servicesRepository.find();
+        const services = await servicesRepository.find();
 
-        return response.json(service_view.renderMany(service));
+        return response.json(service_view.renderMany(services));
+    },
+
+    async showByUrl(request: Request, response: Response) {
+        let { url } = request.params;
+
+        if (url.charAt(0) !== '/') url = '/' + url;
+
+        const servicesRepository = getRepository(Service);
+
+        const services = await servicesRepository.find();
+
+        services.forEach((service) => {
+            if (service.url === url) return response.json(service_view.render(service));
+        });
+
     }
 }

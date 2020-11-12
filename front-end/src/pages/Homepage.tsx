@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../styles/pages/homepage.css';
 
@@ -39,7 +40,7 @@ export default function Homepage() {
                                 <div className="col-md-4" key={index}>
                                     <h2>{service.name}</h2>
                                     <p>{service.description}</p>
-                                    <p><a className="btn btn-secondary" href="/" role="button">View details &raquo;</a></p>
+                                    <p><Link className="btn btn-secondary" to={service.url.charAt(0) === "/" ? (`/pricing${service.url}`) : (`/pricing/${service.url}`)} role="button">View details &raquo;</Link></p>
                                 </div>
                             )
                         })}

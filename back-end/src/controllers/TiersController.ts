@@ -137,29 +137,37 @@ export default {
         return response.json(tier_view.renderMany(tiers_data));
     },
 
-    async showByServiceId(request: Request, response: Response) {
-        const { id } = request.params;
+    async showByServiceUrl(request: Request, response: Response) {
+        let { url } = request.params;
+
+        if (url.charAt(0) !== '/') url = '/' + url;
 
         const tiersRepository = getRepository(Tier);
         const servicesRepository = getRepository(Service);
 
-        const tiers = await tiersRepository.find();
-        const service = await servicesRepository.findOneOrFail(id);
+        const services = await servicesRepository.find();
 
-        let tiers_data: Tier_data[] = [];
-
-        tiers.forEach((tier) => {
-            if (service.id === tier.service_id) {
-                tiers_data.push({
-                    id: tier.id,
-                    name: tier.name,
-                    price: tier.price,
-                    service_id: tier.service_id,
-                    service_name: service.name
+        services.forEach(async (service) => {
+            if (service.url === url) {
+                const service_data = await servicesRepository.findOneOrFail(service.id);
+                const tiers = await tiersRepository.find();
+                
+                let tiers_data: Tier_data[] = [];
+        
+                tiers.forEach((tier) => {
+                    if (service_data.id === tier.service_id) {
+                        tiers_data.push({
+                            id: tier.id,
+                            name: tier.name,
+                            price: tier.price,
+                            service_id: tier.service_id,
+                            service_name: service_data.name
+                        });
+                    }
                 });
+        
+                return response.json(tier_view.renderMany(tiers_data));
             }
         });
-
-        return response.json(tier_view.renderMany(tiers_data));
     }
 }
