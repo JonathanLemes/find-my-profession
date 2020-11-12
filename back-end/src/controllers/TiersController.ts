@@ -22,8 +22,8 @@ export default {
         const tiersRepository = getRepository(Tier);
         const data = {
             name,
-            price,
-            service_id
+            price: parseFloat(price),
+            service_id: parseInt(service_id)
         }
         const schema = Yup.object().shape({
             name: Yup.string().required(),
@@ -132,6 +132,32 @@ export default {
                     });
                 }
             });
+        });
+
+        return response.json(tier_view.renderMany(tiers_data));
+    },
+
+    async showByServiceId(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const tiersRepository = getRepository(Tier);
+        const servicesRepository = getRepository(Service);
+
+        const tiers = await tiersRepository.find();
+        const service = await servicesRepository.findOneOrFail(id);
+
+        let tiers_data: Tier_data[] = [];
+
+        tiers.forEach((tier) => {
+            if (service.id === tier.service_id) {
+                tiers_data.push({
+                    id: tier.id,
+                    name: tier.name,
+                    price: tier.price,
+                    service_id: tier.service_id,
+                    service_name: service.name
+                });
+            }
         });
 
         return response.json(tier_view.renderMany(tiers_data));
