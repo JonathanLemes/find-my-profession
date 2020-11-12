@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/pages/pricing.css';
 
 import Navbar from '../components/Navbar';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import api from '../services/api';
 
 interface ServiceParams {
@@ -12,7 +12,8 @@ interface ServiceParams {
 
 interface Tier {
     name: string,
-    price: number
+    price: number,
+    id: number
 }
 
 interface Service {
@@ -56,12 +57,12 @@ export default function Pricing() {
                                 <div className="card-body">
                                     <h1 className="card-title pricing-card-title">${tier.price.toFixed(2)} <small className="text-muted">/ mo</small></h1>
                                     <ul className="list-unstyled mt-3 mb-4">
-                                    <li>10 users included</li>
-                                    <li>2 GB of storage</li>
-                                    <li>Email support</li>
-                                    <li>Help center access</li>
+                                        <li>10 users included</li>
+                                        <li>2 GB of storage</li>
+                                        <li>Email support</li>
+                                        <li>Help center access</li>
                                     </ul>
-                                    <button type="button" className="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+                                    <Link to={`/checkout/${tier.id}`}><button type="button" className="btn btn-lg btn-block btn-outline-primary">Buy service {tier.name}</button></Link>
                                 </div>                        
                             </div>
                         )
