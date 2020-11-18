@@ -23,10 +23,17 @@ interface Service {
     url: string
 }
 
+interface TierDescription {
+    name: string,
+    tier_id: number,
+    tier_name: string
+}
+
 export default function Pricing() {
     const params = useParams<ServiceParams>();
     const [tiers, setTiers] = useState<Tier[]>([]);
     const [service, setService] = useState<Service>();
+    const [tierDescriptions, setTierDescriptions] = useState<TierDescription[]>([]);
 
     useEffect(() => {
         api.get(params.url.charAt(0) === "/" ? (`/tier/service${params.url}`) : (`/tier/service/${params.url}`)).then((response) => {
@@ -36,9 +43,12 @@ export default function Pricing() {
         api.get(params.url.charAt(0) === "/" ? (`/service${params.url}`) : (`/service/${params.url}`)).then((response) => {
             setService(response.data);
         });
+        api.get('/tier-descriptions').then((response) => {
+            setTierDescriptions(response.data);
+        });
     }, [params.url]);
 
-    if (tiers.length === 0 || !service) {
+    if (tiers.length === 0 || !service || tierDescriptions.length === 0) {
         return (
             <div className="Pricing">
                 <Navbar />
@@ -113,10 +123,9 @@ export default function Pricing() {
                                 <div className="card-body">
                                     <h1 className="card-title pricing-card-title">${tier.price.toFixed(2)} <small className="text-muted">/ mo</small></h1>
                                     <ul className="list-unstyled mt-3 mb-4">
-                                        <li>10 users included</li>
-                                        <li>2 GB of storage</li>
-                                        <li>Email support</li>
-                                        <li>Help center access</li>
+                                        {tierDescriptions.map((tierDescription, descriptionIndex) => {
+                                            return (tierDescription.tier_id === tier.id && (<li key={descriptionIndex}>{tierDescription.name}</li>));
+                                        })}
                                     </ul>
                                     <Link to={`/checkout/${tier.id}`}><button type="button" className="btn btn-lg btn-block btn-outline-primary">Buy service {tier.name}</button></Link>
                                 </div>                        
