@@ -14,7 +14,7 @@ export default function Navbar() {
                         <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="https://app.swaggerhub.com/apis-docs/JonathanLemes/Find-my-profession/1.0.0">API Documentation</a>
+                        <a className="nav-link" rel="noreferrer" target="_blank" href="https://app.swaggerhub.com/apis-docs/JonathanLemes/Find-my-profession/">API Documentation</a>
                     </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
