@@ -25,16 +25,17 @@ export default function Checkout() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
-    const [country, setCountry] = useState("");
-    const [state, setState] = useState("");
+    const [country, setCountry] = useState("Choose...");
+    const [state, setState] = useState("Choose...");
     const [zip, setZip] = useState("");
 
     const handleSubmit = (event: React.MouseEvent) => {
         event.preventDefault();
-        if (EmailValidator.validate(email) && firstName && lastName && address && country && state && zip && tier) {
+        if (EmailValidator.validate(email) && firstName && lastName && address && country !== "Choose..." && state !== "Choose..." && zip && tier) {
             const user_data = {
                 firstName,
                 lastName,
+                email,
                 address,
                 country,
                 state,
