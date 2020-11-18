@@ -14,10 +14,7 @@ export default function Navbar() {
                         <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/">Link</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="/" tabIndex={-1} aria-disabled="true">Disabled</a>
+                        <a className="nav-link" href="https://github.com/JonathanLemes/find-my-profession/tree/master/docs/api.html">API Documentation</a>
                     </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
