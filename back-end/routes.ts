@@ -16,4 +16,7 @@ routes.get('/tier/service/:url', TiersController.showByServiceUrl);
 routes.get('/services', ServicesController.showAll);
 routes.get('/tiers', TiersController.showAll);
 
+routes.delete('/services', ServicesController.deleteAll);
+routes.delete('/tiers', TiersController.deleteAll);
+
 export default routes;

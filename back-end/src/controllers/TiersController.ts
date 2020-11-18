@@ -169,5 +169,21 @@ export default {
                 return response.json(tier_view.renderMany(tiers_data));
             }
         });
+    },
+
+    async deleteAll(request: Request, response: Response) {
+        const tiersRepository = getRepository(Tier);
+
+        tiersRepository.createQueryBuilder().delete().execute().then((res) => {
+            response.status(401).json({
+                check: true,
+                res: res
+            });
+        }).catch((err) => {
+            response.status(500).json({
+                check: false,
+                res: err
+            });
+        });
     }
 }

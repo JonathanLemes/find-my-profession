@@ -68,5 +68,21 @@ export default {
             if (service.url === url) return response.json(service_view.render(service));
         });
 
+    },
+
+    async deleteAll(request: Request, response: Response) {
+        const servicesRepository = getRepository(Service);
+
+        servicesRepository.createQueryBuilder().delete().execute().then((res) => {
+            response.status(401).json({
+                check: true,
+                res: res
+            });
+        }).catch((err) => {
+            response.status(500).json({
+                check: false,
+                res: err
+            });
+        });
     }
 }
