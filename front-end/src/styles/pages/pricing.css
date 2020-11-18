@@ -35,3 +35,14 @@ html {
     min-width: 220px;
 }
   
+.pricing-header.px-3.py-3.pt-md-5.pb-md-4.mx-auto.text-center.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-deck.mb-3.text-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
