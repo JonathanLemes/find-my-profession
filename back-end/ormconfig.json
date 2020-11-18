@@ -1,10 +1,10 @@
 {
    "type": "postgres",
-   "host": "localhost",
+   "host": "ec2-54-84-98-18.compute-1.amazonaws.com",
    "port": 5432,
-   "username": "postgres",
-   "password": "123456",
-   "database": "find_my_profession",
+   "username": "fdiubuwfgjsjme",
+   "password": "6320e74e3671130ce6a61b5c80a6263680d4623e743b4b4a7f1fb548f1c0d82b",
+   "database": "d784k3kiapc7df",
    "synchronize": true,
    "logging": false,
    "entities": [
@@ -13,6 +13,9 @@
    "migrations": [
       "src/migration/*.ts"
    ],
+   "ssl": {
+      "rejectUnauthorized": false
+   },
    "cli": {
       "entitiesDir": "entity",
       "migrationsDir": "src/migration"
