@@ -1,6 +1,6 @@
-import { Tier } from '../../entity/Tier';
+import { Tiers } from '../../models/Tier';
 
-interface Tier_data extends Tier {
+interface Tier_data extends Tiers {
     service_name: string
 }
 

@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { Tier } from '../../entity/Tier';
-import tier_view from '../views/tier_view';
+import { Tiers } from '../../models/Tier';
+import tier_view from '../views/tierView';
 import * as Yup from 'yup';
-import { Service } from '../../entity/Service';
+import { Services } from '../../models/Service';
 
-interface Tier_data extends Tier {
+interface Tier_data extends Tiers {
     service_name: string
 }
 
@@ -19,7 +19,7 @@ export default {
 
         console.log("Inserting a new tier into the database...");
         
-        const tiersRepository = getRepository(Tier);
+        const tiersRepository = getRepository(Tiers);
         const data = {
             name,
             price: parseFloat(price),
@@ -52,7 +52,7 @@ export default {
 
         console.log("Looking for the service by name...");
         
-        const servicesRepository = getRepository(Service);
+        const servicesRepository = getRepository(Services);
         const services = await servicesRepository.find();
         let service_id = -1;
 
@@ -64,7 +64,7 @@ export default {
         
         console.log("Service found! Inserting a new tier into the database...");
         
-        const tiersRepository = getRepository(Tier);
+        const tiersRepository = getRepository(Tiers);
         const data = {
             name,
             price,
@@ -90,8 +90,8 @@ export default {
 
     async show(request: Request, response: Response) {
         const { id } = request.params;
-        const tiersRepository = getRepository(Tier);
-        const servicesRepository = getRepository(Service);
+        const tiersRepository = getRepository(Tiers);
+        const servicesRepository = getRepository(Services);
 
         const tier = await tiersRepository.findOneOrFail(id);
         const services = await servicesRepository.find();
@@ -112,8 +112,8 @@ export default {
     },
 
     async showAll(request: Request, response: Response) {
-        const tiersRepository = getRepository(Tier);
-        const servicesRepository = getRepository(Service);
+        const tiersRepository = getRepository(Tiers);
+        const servicesRepository = getRepository(Services);
 
         const tiers = await tiersRepository.find();
         const services = await servicesRepository.find();
@@ -142,8 +142,8 @@ export default {
 
         if (url.charAt(0) !== '/') url = '/' + url;
 
-        const tiersRepository = getRepository(Tier);
-        const servicesRepository = getRepository(Service);
+        const tiersRepository = getRepository(Tiers);
+        const servicesRepository = getRepository(Services);
 
         const services = await servicesRepository.find();
 
@@ -172,7 +172,7 @@ export default {
     },
 
     async deleteAll(request: Request, response: Response) {
-        const tiersRepository = getRepository(Tier);
+        const tiersRepository = getRepository(Tiers);
 
         tiersRepository.createQueryBuilder().delete().execute().then((res) => {
             response.status(401).json({

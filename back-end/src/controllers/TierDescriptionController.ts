@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { Tier } from '../../entity/Tier';
-import { TierDescription } from '../../entity/TierDescription';
-import tier_description_view from '../views/tier_description_view';
+import { Tiers } from '../../models/Tier';
+import { TierDescription } from '../../models/TierDescription';
+import tier_description_view from '../views/tierDescriptionView';
 import * as Yup from 'yup';
 
 interface TierDescription_data extends TierDescription {
@@ -42,7 +42,7 @@ export default {
 
     async show(request: Request, response: Response) {
         const { id } = request.params;
-        const tiersRepository = getRepository(Tier);
+        const tiersRepository = getRepository(Tiers);
         const tiersDescriptionRepository = getRepository(TierDescription);
 
         const tier_description = await tiersDescriptionRepository.findOneOrFail(id);
@@ -63,7 +63,7 @@ export default {
     },
 
     async showAll(request: Request, response: Response) {
-        const tiersRepository = getRepository(Tier);
+        const tiersRepository = getRepository(Tiers);
         const tierDescriptionRepository = getRepository(TierDescription);
 
         const tiers = await tiersRepository.find();

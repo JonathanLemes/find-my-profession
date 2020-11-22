@@ -1,7 +1,7 @@
-import { Service } from '../../entity/Service';
+import { Services } from '../../models/Service';
 
 export default {
-    render(service: Service) {
+    render(service: Services) {
         return {
             id: service.id,
             name: service.name,
@@ -10,7 +10,7 @@ export default {
         };
     },
 
-    renderMany(services: Service[]) {
+    renderMany(services: Services[]) {
         return services.map(service => this.render(service));
     }
 }

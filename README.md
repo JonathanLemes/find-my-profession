@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+# Find my profession
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Technical test to Find My Profession, using ReactJS.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Deployment and access
 
-### `yarn start`
+To prevent configuration problems, the project was deployed using <a href="https://vercel.com/">Vercel</a> and <a href="http://heroku.com/">Heroku</a>.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The main app can be accessed by clicking <a rel="noreferrer" target="_blank" href="https://find-my-profession.vercel.app/">here</a>. Vercel is responsible for the front-end environment, built with <a href="https://pt-br.reactjs.org/">ReactJS</a>. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The app gets all the data by HTTP Requests in a Heroku server, built with <a href="https://expressjs.com/pt-br/">ExpressJS</a>. The API Documentation can be found by clicking <a className="nav-link" rel="noreferrer" target="_blank" href="https://app.swaggerhub.com/apis-docs/JonathanLemes/Find-my-profession/">here</a>.
 
-### `yarn test`
+Also in Heroku, there is another server running, responsible for the database built with <a href="https://www.postgresql.org/">PostgreSQL</a>. The data was inserted via <a href="https://insomnia.rest/">Insomnia</a>, using the REST API.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+## Front-End
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The ReactJS app was built following the steps at the Practical skills assessment PDF. As requested, I focused on building a clear and understandable code, without adding new funcionalities to it. Although the App.tsx has the base code for rendering the SPA, the routes through pages are made by routes.tsx, using the lib *react-router-dom*. The routing through the Pricing pages are made by the url inserted at the Service Table.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A good addition to the base code could be the implementation of the React App with <a href="https://nextjs.org/">NextJS</a>, to be possible to work with SEO by it's smart SSR tools, without overcharging the Vercel server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The front-end was implemented with all the funcionalities at the PDF, 
 
-### `yarn eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Created by: Jonathan Fillipe Lemes

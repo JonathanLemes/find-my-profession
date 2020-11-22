@@ -1,4 +1,4 @@
-import { TierDescription } from '../../entity/TierDescription';
+import { TierDescription } from '../../models/TierDescription';
 
 interface TierDescription_data extends TierDescription {
     tier_name: string

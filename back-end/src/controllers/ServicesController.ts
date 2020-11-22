@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { Service } from '../../entity/Service';
-import service_view from '../views/service_view';
+import { Services } from '../../models/Service';
+import service_view from '../views/serviceView';
 import * as Yup from 'yup';
 
 export default {
@@ -14,7 +14,7 @@ export default {
 
         console.log("Inserting a new service into the database...");
         
-        const servicesRepository = getRepository(Service);
+        const servicesRepository = getRepository(Services);
         const data = {
             name,
             url,
@@ -40,7 +40,7 @@ export default {
 
     async show(request: Request, response: Response) {
         const { id } = request.params;
-        const servicesRepository = getRepository(Service);
+        const servicesRepository = getRepository(Services);
 
         const service = await servicesRepository.findOneOrFail(id);
 
@@ -48,7 +48,7 @@ export default {
     },
 
     async showAll(request: Request, response: Response) {
-        const servicesRepository = getRepository(Service);
+        const servicesRepository = getRepository(Services);
 
         const services = await servicesRepository.find();
 
@@ -60,7 +60,7 @@ export default {
 
         if (url.charAt(0) !== '/') url = '/' + url;
 
-        const servicesRepository = getRepository(Service);
+        const servicesRepository = getRepository(Services);
 
         const services = await servicesRepository.find();
 
@@ -71,7 +71,7 @@ export default {
     },
 
     async deleteAll(request: Request, response: Response) {
-        const servicesRepository = getRepository(Service);
+        const servicesRepository = getRepository(Services);
 
         servicesRepository.createQueryBuilder().delete().execute().then((res) => {
             response.status(401).json({
